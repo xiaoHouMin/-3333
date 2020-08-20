@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .tab {
+            width: 1200px;
+            margin: 50px auto;
+        }
+
+        .tab_list {
+            height: 40px;
+            background-color: #ccc;
+            line-height: 40px;
+            border: 1px solid rgb(175, 173, 173);
+        }
+
+        .tab_list ul li {
+            float: left;
+            width: 150px;
+            text-align: center;
+            color: #000;
+            cursor: pointer;
+        }
+
+        .tab_list .current {
+            background-color: #c81623;
+            color: #fff;
+        }
+
+        .item {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tab">
+        <div class="tab_list">
+            <ul>
+                <li class="current">商品介绍</li>
+                <li>规格与包装</li>
+                <li>售后保障</li>
+                <li>商品评价（5000+）</li>
+                <li>手机社区</li>
+            </ul>
+        </div>
+        <div class="tab_con">
+            <div class="item" style="display: block;">商品介绍模块</div>
+            <div class="item">规格包装模块</div>
+            <div class="item">售后保障模块</div>
+            <div class="item">商品评价模块</div>
+            <div class="item">手机社区模块</div>
+        </div>
+    </div>
+</body>
+<script>
+    // 1.tab_list模块  点击一个选项卡，当前变成红色，其他不变，排他思想
+    var tab_list = document.querySelector('.tab_list');
+    var lis = tab_list.querySelectorAll('li');
+    var items = document.querySelectorAll('.item');
+    // 2.循环绑定点击事件
+    for (var i = 0; i < lis.length; i++) {
+        // 给五个小li 设置索引号
+        lis[i].setAttribute('index', i);
+        lis[i].onclick = function () {
+            // 干掉所有人
+            for (var i = 0; i < lis.length; i++) {
+                lis[i].className = '';
+            }
+            // 留下我自己
+            this.className = 'current';
+            var index = this.getAttribute('index');
+            for (var i = 0; i<items.length; i++) {
+                items[i].style.display = 'none';
+            }
+            items[index].style.display = 'block';
+        }
+    }
+</script>
+
+</html>
